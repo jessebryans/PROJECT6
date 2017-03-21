@@ -1,0 +1,80 @@
+body {
+	background-color: pink;
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.codeMirror {
+	width: 40%;
+
+}
+
+.CodeMirror {
+	height: 300px;
+}
+
+.userDataInput {
+display: flex;
+justify-content: space-between;
+}
+
+.userDataInput input {
+	width: 30%;
+	padding: 0 0 300px 0;
+}
+
+.user-form {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.user-form label {
+	margin: 10px;
+}
+
+.user-form input {
+	padding: 8px;
+	border: none;
+}
+
+
+.signin-login-form {
+	display: flex;
+	list-style: none;
+	font-size: 20px;
+}
+
+.signin-login-form a {
+	text-decoration: none;
+	padding: 5px;
+	color: white;
+	transition: .5s ease-in;
+}
+
+.signin-login-form a:hover {
+	color: orange;
+}
+
+
+button {
+	height: 20px;
+}
+
+ul.results {
+	border: 1px solid red;
+	padding: 5px;
+	width: 20%;
+	margin: 0;
+	height: 300px;
+}
+
+.results-data {
+	list-style: none;
+	font-size: 15px;
+}
+
+p{
+	text-align: center;
+}
