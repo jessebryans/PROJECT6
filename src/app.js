@@ -5,7 +5,7 @@ import Results from './results.js'
 import Footer from './footer.js'
 import Signin from './Signin.js'
 var FontAwesome = require('react-fontawesome');
-require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/htmlmixed/htmlmixed');
 
 const config = {
     apiKey: "AIzaSyCUsQu53Jp5JW9vrOUFOjlwyB_CVmfgdio",
@@ -22,8 +22,8 @@ class App extends React.Component {
 		super();
 		this.state = {
 			results: [],
-			code: "hey",
-			text: "",
+			code: "",
+			text: ""
 			
 		}
 		this.userInput = this.userInput.bind(this);
@@ -88,7 +88,7 @@ class App extends React.Component {
 		var options = {
             lineNumbers: true,
             theme: "cobalt",
-            mode:'javascript'
+            mode:'htmlmixed'
 
         };
 		return (
@@ -97,8 +97,8 @@ class App extends React.Component {
 				<Signin />
 				<form onSubmit={this.userInput} className='userDataInput'>
 					<CodeMirror value={this.state.code} options={options} name='code' onChange={this.handleCode} className='codeMirror' />
-					<input type="text" name="text" onChange={this.handleText}/>
-					<button>SUBMIT</button>
+					<input value={this.state.text} type="text" name="text" onChange={this.handleText}/>
+					<button className="submitButton">SUBMIT</button>
 					<ul className='results'>
 						{this.state.results.map((code,i) => {
 							return <Results data={code} key={i} remove={this.removeUserInput}/>

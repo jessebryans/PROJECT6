@@ -7,12 +7,14 @@ export default class Signin extends React.Component{
 			formToShow: '',
 			email: '',
 			password: '',
-			confirm: ''
+			confirm: '',
+			loggedIn: false
 		}
 		this.formToShow = this.formToShow.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.signup = this.signup.bind(this);
 		this.login = this.login.bind(this);
+		this.signout = this.signout.bind(this);
 
 
 	}
@@ -40,12 +42,25 @@ export default class Signin extends React.Component{
 		firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
 		.then((data)=> {
 			console.log(data)
+			this.setState({
+				loggedIn: true
+			})
+
+
+		});
+
+		//checks if user is login in
+		//
+	}
+	signout(e) {
+		firebase.auth().signOut().then(function(success) {
+			console.log('signed out')
 		});
 	}
 	render() {
-		let loginForm = '';
+		let formToDisplay = '';
 		if(this.state.formToShow === 'signup') {
-			loginForm = (
+			formToDisplay = (
 				<form onSubmit={this.signup} className='user-form'>
 					<label htmlFor="email">Email: </label>
 					<input type="email" name="email" onChange=
@@ -59,16 +74,21 @@ export default class Signin extends React.Component{
 			)
 		}
 		else if(this.state.formToShow === "login") {
-			loginForm = (
-				<form onSubmit={this.login} className="user-form">
-					<label htmlFor="email">Email: </label>
-					<input type="email" name="email" onChange={this.handleChange}/>
-					<label htmlFor="password">Password: </label>
-					<input type="password" name="password" onChange={this.handleChange}/>
-					<button>Log In</button>
-				</form>	
+			let greeting = ( <h3>Hello User {this.state.email}</h3> )
+			formToDisplay = (
+				<div>
+					<form onSubmit={this.login} className="user-form">
+						<label htmlFor="email">Email: </label>
+						<input type="email" name="email" onChange={this.handleChange}/>
+						<label htmlFor="password">Password: </label>
+						<input type="password" name="password" onChange={this.handleChange}/>
+						<button>Log In</button>
+					</form>
+					{this.state.loggedIn === true ? greeting : null }
+				</div>
 			);
 		}
+		
 	return (
 		<div>
 			<header>
@@ -77,10 +97,11 @@ export default class Signin extends React.Component{
 					<ul className='signin-login-form'>
 						<li><a href="" className="signup" onClick={this.formToShow}>Sign Up</a></li>
 						<li><a href="" className="login" onClick={this.formToShow}>Log In</a></li>
+						<li><a href="" className="logout" onClick={this.signout}>Log Out</a></li>
 					</ul>
 				</nav>
 			</header>
-			{loginForm}
+			{formToDisplay}
 		</div>
 		)
 	}
