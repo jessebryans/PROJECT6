@@ -32662,6 +32662,23 @@ var Signin = function (_React$Component) {
 			});
 		}
 	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this3 = this;
+
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (user) {
+					_this3.setState({
+						loggedIn: true
+					});
+				}
+			});
+		}
+		// firebase.auth().onAuthStageChange
+		// if there is a user
+		// set hte state of logged in to be equal to true
+
+	}, {
 		key: 'signout',
 		value: function signout(e) {
 			firebase.auth().signOut().then(function (success) {
@@ -32735,6 +32752,11 @@ var Signin = function (_React$Component) {
 				);
 			}
 
+			var loginMessage = _react2.default.createElement(
+				'h2',
+				null,
+				'you are logged in'
+			);
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -32782,6 +32804,7 @@ var Signin = function (_React$Component) {
 						)
 					)
 				),
+				this.state.loggedIn === true ? loginMessage : null,
 				formToDisplay
 			);
 		}
@@ -33002,7 +33025,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Footer() {
 	return _react2.default.createElement(
 		'p',
-		{ className: '' },
+		{ className: 'footer' },
 		'Jesse Bryans 2017'
 	);
 }
@@ -33029,9 +33052,16 @@ function Results(props) {
 		{ className: 'results-data', onClick: function onClick() {
 				return props.getResults(props.data.key);
 			} },
-		props.data.code,
-		' - ',
-		props.data.text,
+		_react2.default.createElement(
+			'div',
+			{ className: 'resultsTextCode' },
+			props.data.code
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'resultsTextInput' },
+			props.data.text
+		),
 		_react2.default.createElement(
 			'button',
 			{ onClick: function onClick() {

@@ -1,3 +1,6 @@
+html {
+	height: 100vh;
+}
 
 body {
 	background:linear-gradient(45deg, pink, orange, lightblue);
@@ -26,7 +29,7 @@ header h1 {
 }
 
 .CodeMirror {
-	height: 300px;
+	height: 325px;
 }
 
 .userDataInput {
@@ -36,7 +39,8 @@ justify-content: space-between;
 
 .userDataInput input {
 	width: 25%;
-	padding: 0 0 300px 0;
+	padding: 5px 5px 300px 5px;
+	background-color: #ffefd5;
 }
 
 .userDataInput button {
@@ -111,7 +115,7 @@ justify-content: space-between;
 }
 
 .signin-login-form a:hover {
-	color: orange;
+	color: lightpink;
 }
 
 @media (max-width: 800px) {
@@ -136,7 +140,14 @@ ul.results {
 }
 
 ul.results button {
-	margin-left: 5px;
+	display: inline-block;
+	float: right;
+}
+
+.resultsTextInput {
+	font-family: 'Open Sans';
+	font-weight: bold;
+	display: inline-block;
 }
 
 .results-data {
@@ -148,4 +159,8 @@ ul.results button {
 
 p{
 	text-align: center;
+}
+
+.footer {
+	padding-top: 20px;
 }

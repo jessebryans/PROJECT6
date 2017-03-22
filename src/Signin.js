@@ -47,7 +47,19 @@ export default class Signin extends React.Component{
 			})
 		});
 	}
-	
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged((user)=> {
+			if (user) {
+				this.setState({
+					loggedIn: true
+				})
+
+			}
+		})
+	}
+		// firebase.auth().onAuthStageChange
+		// if there is a user
+		// set hte state of logged in to be equal to true
 	signout(e) {
 		firebase.auth().signOut().then(function(success) {
 			console.log('signed out')
@@ -85,6 +97,9 @@ export default class Signin extends React.Component{
 			);
 		}
 		
+		let loginMessage = (
+				<h2>you are logged in</h2>
+			)
 	return (
 		<div>
 			<header>
@@ -97,6 +112,7 @@ export default class Signin extends React.Component{
 					</ul>
 				</nav>
 			</header>
+			{this.state.loggedIn === true ? loginMessage : null}
 			{formToDisplay}
 		</div>
 		)
