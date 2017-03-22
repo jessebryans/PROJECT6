@@ -32660,9 +32660,6 @@ var Signin = function (_React$Component) {
 					loggedIn: true
 				});
 			});
-
-			//checks if user is login in
-			//
 		}
 	}, {
 		key: 'signout',
@@ -32861,6 +32858,7 @@ var App = function (_React$Component) {
 		_this.userInput = _this.userInput.bind(_this);
 		_this.handleCode = _this.handleCode.bind(_this);
 		_this.handleText = _this.handleText.bind(_this);
+		_this.getResults = _this.getResults.bind(_this);
 		return _this;
 	}
 
@@ -32929,9 +32927,25 @@ var App = function (_React$Component) {
 			dbRef.remove();
 		}
 	}, {
+		key: 'getResults',
+		value: function getResults(key) {
+			var _this3 = this;
+
+			var dbRef = firebase.database().ref(key);
+			dbRef.on('value', function (res) {
+				var result = res.val();
+				console.log(result);
+				console.log(result.code);
+				_this3.setState({
+					code: result.code,
+					text: result.text
+				});
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
-			var _this3 = this;
+			var _this4 = this;
 
 			var options = {
 				lineNumbers: true,
@@ -32957,7 +32971,7 @@ var App = function (_React$Component) {
 						'ul',
 						{ className: 'results' },
 						this.state.results.map(function (code, i) {
-							return _react2.default.createElement(_results2.default, { data: code, key: i, remove: _this3.removeUserInput });
+							return _react2.default.createElement(_results2.default, { getResults: _this4.getResults, data: code, key: i, remove: _this4.removeUserInput });
 						})
 					)
 				),
@@ -33012,7 +33026,9 @@ var FontAwesome = require('react-fontawesome');
 function Results(props) {
 	return _react2.default.createElement(
 		'li',
-		{ className: 'results-data' },
+		{ className: 'results-data', onClick: function onClick() {
+				return props.getResults(props.data.key);
+			} },
 		props.data.code,
 		' - ',
 		props.data.text,

@@ -45,13 +45,9 @@ export default class Signin extends React.Component{
 			this.setState({
 				loggedIn: true
 			})
-
-
 		});
-
-		//checks if user is login in
-		//
 	}
+	
 	signout(e) {
 		firebase.auth().signOut().then(function(success) {
 			console.log('signed out')

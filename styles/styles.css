@@ -1,9 +1,12 @@
+
 body {
 	background:linear-gradient(45deg, pink, orange, lightblue);
 	font-family: 'Fjalla One', sans-serif;
+}
+
+.landing {
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: 100vh;
 }
 
 header h1 {
@@ -12,6 +15,11 @@ header h1 {
 	font-size: 50px;
 }
 
+@media (max-width: 800px) {
+	header h1 {
+		text-align: center;
+	}
+}
 .codeMirror {
 	width: 40%;
 
@@ -36,11 +44,33 @@ justify-content: space-between;
 	background-color: #120A8F;
 	color: white;
 	height: 20px;
+	border-radius: 2px;
+}
+
+@media (max-width: 800px) {
+	.userDataInput {
+		display: block;
+	}
+	.codeMirror {
+		width: 100%;
+	}
+	.userDataInput input{
+		width: 100%;
+	}
+	.submitButton {
+		margin: 0;
+	}	
 }
 
 .submitButton {
 	margin: 150px 0 0 0;
 }
+@media (max-width: 800px) {
+	.submitButton {
+		margin: 0;
+	}
+}
+
 .user-form {
 	padding: 20px;
 	display: flex;
@@ -58,6 +88,14 @@ justify-content: space-between;
 	border: none;
 }
 
+.user-form button {
+	border: none;
+	background-color: #120A8F;
+	color: white;
+	height: 20px;
+	margin-left: 5px;
+	border-radius: 2px;
+}
 
 .signin-login-form {
 	display: flex;
@@ -76,6 +114,12 @@ justify-content: space-between;
 	color: orange;
 }
 
+@media (max-width: 800px) {
+	.signin-login-form {
+		justify-content: space-around;
+	}
+}
+
 ul.results {
 	font-family: 'Space Mono', monospace;
 	/*border: 1px solid #120A8F;*/
@@ -83,6 +127,12 @@ ul.results {
 	width: 25%;
 	margin: 0;
 	height: 300px;
+}
+
+@media (max-width: 800px) {
+	ul.results {
+		width: 100%;
+	}
 }
 
 ul.results button {

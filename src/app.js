@@ -29,11 +29,12 @@ class App extends React.Component {
 		this.userInput = this.userInput.bind(this);
 		this.handleCode = this.handleCode.bind(this);
 		this.handleText = this.handleText.bind(this);
+		this.getResults = this.getResults.bind(this);
 	}
 	componentDidMount() {
 		const dbRef = firebase.database().ref();
 		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {		
+			if (user) {
 				dbRef.on('value', (response) => {
 					const newState = []
 					const data = response.val()
@@ -84,6 +85,19 @@ class App extends React.Component {
 		const dbRef = firebase.database().ref(itemToRemove)
 		dbRef.remove();
 	}
+	getResults(key) {
+		const dbRef = firebase.database().ref(key);
+			dbRef.on('value', (res) => {
+			const result = res.val();
+			console.log(result);
+			console.log(result.code)
+			this.setState({
+				code: result.code,
+				text: result.text
+			})
+		});
+	}
+
 	render() {
 		var options = {
             lineNumbers: true,
@@ -101,7 +115,7 @@ class App extends React.Component {
 					<button className="submitButton">SUBMIT</button>
 					<ul className='results'>
 						{this.state.results.map((code,i) => {
-							return <Results data={code} key={i} remove={this.removeUserInput}/>
+							return <Results getResults={this.getResults} data={code} key={i} remove={this.removeUserInput}/>
 						})}
 					</ul>
 				</form>
