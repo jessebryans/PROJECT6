@@ -27,21 +27,21 @@ export default class Signin extends React.Component{
 	handleChange(e) {
 		this.setState({
 			[e.target.name]: e.target.value
-		});console.log(e)
+		});
 	}
 	signup(e) {
 		e.preventDefault();
 		if(this.state.password === this.state.confirm)
 		firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
 		.then((data)=> {
-			console.log(data)
+			
 		}) 
 	}
 	login(e) {
 		e.preventDefault();
 		firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
 		.then((data)=> {
-			console.log(data)
+			
 			this.setState({
 				loggedIn: true
 			})
@@ -62,7 +62,7 @@ export default class Signin extends React.Component{
 		// set hte state of logged in to be equal to true
 	signout(e) {
 		firebase.auth().signOut().then(function(success) {
-			console.log('signed out')
+			
 		});
 	}
 	render() {
@@ -82,15 +82,19 @@ export default class Signin extends React.Component{
 			)
 		}
 		else if(this.state.formToShow === "login") {
-			let greeting = ( <h3>Hello User {this.state.email}</h3> )
+			let greeting = ( <h3 className="userGreeting">Hello User {this.state.email}</h3> )
 			formToDisplay = (
 				<div>
 					<form onSubmit={this.login} className="user-form">
-						<label htmlFor="email">Email: </label>
-						<input type="email" name="email" onChange={this.handleChange}/>
-						<label htmlFor="password">Password: </label>
-						<input type="password" name="password" onChange={this.handleChange}/>
-						<button>Log In</button>
+						<div>
+							<label htmlFor="email">Email: </label>
+							<input type="email" name="email" onChange={this.handleChange}/>
+						</div>	
+						<div className="loginPassword">
+							<label htmlFor="password">Password: </label>
+							<input type="password" name="password" onChange={this.handleChange}/>
+						</div>	
+							<button>Log In</button>
 					</form>
 					{this.state.loggedIn === true ? greeting : null }
 				</div>
@@ -98,7 +102,7 @@ export default class Signin extends React.Component{
 		}
 		
 		let loginMessage = (
-				<h2>you are logged in</h2>
+				<h2 className="loginMessage">you are logged in</h2>
 			)
 	return (
 		<div>

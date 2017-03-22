@@ -32638,15 +32638,13 @@ var Signin = function (_React$Component) {
 	}, {
 		key: 'handleChange',
 		value: function handleChange(e) {
-			this.setState(_defineProperty({}, e.target.name, e.target.value));console.log(e);
+			this.setState(_defineProperty({}, e.target.name, e.target.value));
 		}
 	}, {
 		key: 'signup',
 		value: function signup(e) {
 			e.preventDefault();
-			if (this.state.password === this.state.confirm) firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function (data) {
-				console.log(data);
-			});
+			if (this.state.password === this.state.confirm) firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function (data) {});
 		}
 	}, {
 		key: 'login',
@@ -32655,7 +32653,7 @@ var Signin = function (_React$Component) {
 
 			e.preventDefault();
 			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function (data) {
-				console.log(data);
+
 				_this2.setState({
 					loggedIn: true
 				});
@@ -32681,9 +32679,7 @@ var Signin = function (_React$Component) {
 	}, {
 		key: 'signout',
 		value: function signout(e) {
-			firebase.auth().signOut().then(function (success) {
-				console.log('signed out');
-			});
+			firebase.auth().signOut().then(function (success) {});
 		}
 	}, {
 		key: 'render',
@@ -32720,7 +32716,7 @@ var Signin = function (_React$Component) {
 			} else if (this.state.formToShow === "login") {
 				var greeting = _react2.default.createElement(
 					'h3',
-					null,
+					{ className: 'userGreeting' },
 					'Hello User ',
 					this.state.email
 				);
@@ -32731,17 +32727,25 @@ var Signin = function (_React$Component) {
 						'form',
 						{ onSubmit: this.login, className: 'user-form' },
 						_react2.default.createElement(
-							'label',
-							{ htmlFor: 'email' },
-							'Email: '
+							'div',
+							null,
+							_react2.default.createElement(
+								'label',
+								{ htmlFor: 'email' },
+								'Email: '
+							),
+							_react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleChange })
 						),
-						_react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleChange }),
 						_react2.default.createElement(
-							'label',
-							{ htmlFor: 'password' },
-							'Password: '
+							'div',
+							{ className: 'loginPassword' },
+							_react2.default.createElement(
+								'label',
+								{ htmlFor: 'password' },
+								'Password: '
+							),
+							_react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleChange })
 						),
-						_react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleChange }),
 						_react2.default.createElement(
 							'button',
 							null,
@@ -32754,7 +32758,7 @@ var Signin = function (_React$Component) {
 
 			var loginMessage = _react2.default.createElement(
 				'h2',
-				null,
+				{ className: 'loginMessage' },
 				'you are logged in'
 			);
 			return _react2.default.createElement(

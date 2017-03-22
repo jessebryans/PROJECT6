@@ -1,9 +1,10 @@
 html {
-	height: 100vh;
 }
 
 body {
-	background:linear-gradient(45deg, pink, orange, lightblue);
+	background-image:linear-gradient(45deg, pink, orange, lightblue);
+	background-size: cover;
+	min-height: 100vh;
 	font-family: 'Fjalla One', sans-serif;
 }
 
@@ -101,6 +102,20 @@ justify-content: space-between;
 	border-radius: 2px;
 }
 
+@media (max-width: 650px) {
+	.user-form{
+		display: block;
+		text-align: center;
+	}
+	.user-form label{
+		display: block;
+	}
+	.loginPassword{
+		padding: 10px 10px 0 0;
+	}
+
+}
+
 .signin-login-form {
 	display: flex;
 	list-style: none;
@@ -164,3 +179,13 @@ p{
 .footer {
 	padding-top: 20px;
 }
+
+@media (max-width: 650px) {
+	.userGreeting {
+		text-align: center;
+	}
+	.loginMessage {
+		text-align: center;
+	}
+}
+
